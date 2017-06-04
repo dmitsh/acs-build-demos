@@ -63,6 +63,23 @@ function run() {
     return $r
 }
 
+function show() {
+    maybe_first_prompt
+    rate=25
+    if [ -n "$DEMO_RUN_FAST" ]; then
+      rate=1000
+    fi
+    echo "$green$1$reset" | pv -qL $rate
+    if [ -n "$DEMO_RUN_FAST" ]; then
+      sleep 0.5
+    fi
+    read -d '' -t "${timeout}" -n 10000 # clear stdin
+    prompt
+    if [ -z "$DEMO_AUTO_RUN" ]; then
+      read -s
+    fi
+}
+
 function relative() {
     for arg; do
         echo "$(realpath $(dirname $(which $0)))/$arg" | sed "s|$(realpath $(pwd))|.|"

@@ -3,8 +3,7 @@
 PWD=$(dirname ${BASH_SOURCE})
 
 set -e
-source $PWD/../settings.env
-[[ ! -z "${SERVICE_PRINCIPAL_ID:-}" ]] || (echo "Must specify SERVICE_PRINCIPAL_ID" && exit -1)
+SERVICE_PRINCIPAL_ID=$(cat service-principal-id.txt)
 set +e
 
 . $PWD/../util.sh

@@ -125,7 +125,7 @@ desc "install Wordpress"
 run "helm search wordpress"
 #helm search wordpress -l # get all available versions
 
-show "helm inspect stable/wordpress"
+run "helm inspect stable/wordpress"
 
 show "helm install stable/wordpress"
 helm install stable/wordpress --set image=bitnami/wordpress:4.7.4-r1
